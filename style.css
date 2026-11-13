@@ -72,7 +72,31 @@ body {
 .header-left {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 18px;
+}
+
+.brand-logo-card {
+  background: #ffffff;
+  padding: 6px 14px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+  height: 52px;
+}
+
+.brand-logo {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.header-titles {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .badge-sipat {
@@ -86,18 +110,13 @@ body {
   box-shadow: 0 0 15px var(--primary-green-glow);
 }
 
-.header-titles h1 {
-  font-size: 1.6rem;
-  font-weight: 800;
-  letter-spacing: 0.5px;
-  background: linear-gradient(90deg, #ffffff, #cbd5e1);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
 .header-titles .subtitle {
   font-size: 0.85rem;
   color: var(--primary-green);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1.5px;
@@ -863,6 +882,18 @@ button {
     flex-direction: column;
     gap: 12px;
     padding: 16px;
+  }
+  .header-left {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .brand-logo-card {
+    height: 44px;
+    padding: 4px 10px;
+  }
+  .brand-logo {
+    height: 32px;
   }
   .wheel-stage {
     width: 320px;

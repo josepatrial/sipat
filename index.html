@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sorteio SIPAT - Grupo 2 Irmãos</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="bg-glow-orb orb-1"></div>
+  <div class="bg-glow-orb orb-2"></div>
+
+  <!-- Cabeçalho Principal -->
+  <header class="app-header">
+    <div class="header-left">
+      <div class="badge-sipat">🛡️ SIPAT</div>
+      <div class="header-titles">
+        <h1>Grupo 2 Irmãos</h1>
+        <p class="subtitle">Sorteio Oficial de Brindes da SIPAT</p>
+      </div>
+    </div>
+    
+    <div class="header-actions">
+      <button id="btnSoundToggle" class="btn-icon" title="Ativar/Desativar Som">
+        <span id="soundIcon">🔊</span>
+      </button>
+      <button id="btnFullscreen" class="btn-icon" title="Modo Tela Cheia">
+        ⛶ Telão
+      </button>
+      <button id="btnConfig" class="btn-secondary">
+        📁 Importar Nomes
+      </button>
+    </div>
+  </header>
+
+  <!-- Container Principal -->
+  <main class="main-container">
+    
+    <!-- Lado Esquerdo: Área da Roleta / Sorteio -->
+    <section class="wheel-section">
+      <div class="prize-tag-container">
+        <label for="inputCurrentPrize" class="prize-label">Brinde da Rodada:</label>
+        <input type="text" id="inputCurrentPrize" placeholder="Ex: Cesta de Brindes, Fone Bluetooth..." value="Brinde Especial SIPAT">
+      </div>
+
+      <!-- Container da Roleta -->
+      <div class="wheel-stage">
+        <!-- Ponteiro Indicador Superior -->
+        <div class="wheel-pointer">
+          <div class="pointer-arrow"></div>
+        </div>
+
+        <!-- Canvas da Roleta -->
+        <canvas id="wheelCanvas" width="600" height="600"></canvas>
+
+        <!-- Botão Central de Girar -->
+        <button id="btnSpinCenter" class="spin-center-btn" title="Clique para Girar!">
+          <span>GIRAR!</span>
+        </button>
+      </div>
+
+      <!-- Barra de Controle Abaixo da Roleta -->
+      <div class="spin-controls">
+        <button id="btnSpin" class="btn-spin-large">
+          🎲 GIRAR ROLETA
+        </button>
+        <button id="btnQuickDraw" class="btn-quick" title="Sorteio rápido sem girar por 6 segundos">
+          ⚡ Sorteio Rápido
+        </button>
+      </div>
+
+      <!-- Status dos Participantes -->
+      <div class="stats-bar">
+        <div class="stat-card">
+          <span class="stat-label">Total Cadastrado</span>
+          <span id="statTotal" class="stat-value">0</span>
+        </div>
+        <div class="stat-card highlight">
+          <span class="stat-label">Restantes na Rodada</span>
+          <span id="statRemaining" class="stat-value">0</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Já Sorteados</span>
+          <span id="statDrawn" class="stat-value">0</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lado Direito: Histórico de Ganhadores e Ações da Rodada -->
+    <aside class="sidebar-section">
+      <div class="sidebar-card">
+        <div class="sidebar-header">
+          <h2>🏆 Ganhadores da Rodada</h2>
+          <span id="winnersCountBadge" class="badge">0</span>
+        </div>
+
+        <div class="winners-list" id="winnersList">
+          <div class="empty-state" id="emptyWinners">
+            <span>🎁</span>
+            <p>Nenhum brinde sorteado ainda.</p>
+            <small>Gire a roleta para premiar o primeiro colaborador!</small>
+          </div>
+        </div>
+
+        <div class="sidebar-footer">
+          <button id="btnExportWinners" class="btn-outline" title="Baixar lista de ganhadores em planilha">
+            📥 Baixar Lista (Excel)
+          </button>
+          <button id="btnResetRound" class="btn-reset" title="Reiniciar rodada com todos os nomes novamente">
+            🔄 Reiniciar Rodada
+          </button>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Modal de Configuração e Importação de Planilha -->
+  <div class="modal-backdrop" id="modalConfig">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h2>📋 Importar Nomes dos Participantes</h2>
+        <button class="modal-close" id="btnCloseConfig">&times;</button>
+      </div>
+      
+      <div class="modal-body">
+        <p class="modal-desc">
+          Selecione a planilha do evento (Excel <strong>.xlsx</strong>, <strong>.xls</strong> ou <strong>.csv</strong>). O sistema detecta automaticamente a coluna com os nomes!
+        </p>
+
+        <!-- Área de Drag & Drop -->
+        <div class="drop-zone" id="dropZone">
+          <div class="drop-icon">📊</div>
+          <p class="drop-main-text">Arraste a planilha aqui ou clique para selecionar</p>
+          <p class="drop-sub-text">Formatos aceitos: .xlsx, .xls, .csv</p>
+          <input type="file" id="fileInput" accept=".xlsx,.xls,.csv" style="display: none;">
+        </div>
+
+        <div class="separator"><span>OU COLE OS NOMES MANUALMENTE</span></div>
+
+        <div class="manual-input-box">
+          <label for="manualNamesArea">Lista de nomes (um por linha):</label>
+          <textarea id="manualNamesArea" placeholder="Carlos Alberto da Silva&#10;Maria Fernanda Santos&#10;João Pedro Costa&#10;..."></textarea>
+          <button id="btnLoadManual" class="btn-secondary" style="margin-top: 8px;">
+            Carregar Nomes Digitados
+          </button>
+        </div>
+
+        <!-- Pré-visualização dos Nomes Carregados -->
+        <div class="preview-box" id="previewBox" style="display: none;">
+          <h3>Pré-visualização (<span id="previewCount">0</span> nomes encontrados):</h3>
+          <div class="preview-tags" id="previewTags"></div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button id="btnUseSample" class="btn-outline">Carregar Lista de Exemplo</button>
+        <button id="btnSaveConfig" class="btn-primary">Concluir e Ir para o Sorteio</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Comemoração do Ganhador -->
+  <div class="modal-backdrop winner-modal" id="modalWinner">
+    <div class="modal-dialog winner-dialog">
+      <div class="confetti-cannon">🎉</div>
+      <span class="winner-title">PARABÉNS!</span>
+      <h2 id="winnerName" class="winner-name">Colaborador Sorteado</h2>
+      <div class="winner-prize-info">
+        <span class="prize-icon">🎁</span>
+        <span id="winnerPrizeName">Brinde SIPAT</span>
+      </div>
+      <p class="winner-congrats">SIPAT - Grupo 2 Irmãos valorizando quem faz a diferença!</p>
+
+      <div class="modal-footer center-footer">
+        <button id="btnConfirmWinner" class="btn-spin-large">
+          Confirmar e Continuar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Fim da Rodada (Todos os nomes sorteados) -->
+  <div class="modal-backdrop" id="modalRoundFinished">
+    <div class="modal-dialog round-finish-dialog">
+      <div class="finish-icon">🎊</div>
+      <h2>Todos os Participantes Foram Sorteados!</h2>
+      <p>Todos os nomes da lista cadastrada já foram contemplados nesta rodada.</p>
+      <p class="highlight-text">Deseja reiniciar a rodada com todos os nomes novamente para os próximos brindes?</p>
+      
+      <div class="modal-footer center-footer">
+        <button id="btnRestartAll" class="btn-spin-large">
+          🔄 Reiniciar com Todos os Nomes
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts locais (offline-first) -->
+  <script src="xlsx.full.min.js"></script>
+  <script src="confetti.browser.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
+

@@ -648,14 +648,15 @@
   // --- Reinício da Rodada ---
   function resetRound(confirmPrompt = true) {
     if (confirmPrompt) {
-      const ok = confirm("Deseja realmente reiniciar a rodada com TODOS os nomes novamente? (O histórico de quem já ganhou será mantido)");
+      const ok = confirm("Deseja realmente reiniciar a rodada com TODOS os nomes novamente? O histórico de ganhadores da rodada será limpo para a nova rodada.");
       if (!ok) return;
     }
 
     remainingNames = [...allNames];
+    winners = []; // Limpa o histórico de ganhadores da rodada
     updateStatsAndLists();
     closeModal(modalRoundFinished);
-    alert("Rodada reiniciada! Todos os participantes estão disponíveis na roleta novamente.");
+    alert("Rodada reiniciada! Todos os participantes estão disponíveis novamente e o histórico de ganhadores foi limpo.");
   }
 
   // --- Controle de Modais ---

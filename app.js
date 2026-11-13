@@ -91,6 +91,13 @@
   const modalRoundFinished = document.getElementById("modalRoundFinished");
   const btnRestartAll = document.getElementById("btnRestartAll");
 
+  // Patrocinadores
+  const modalSponsors = document.getElementById("modalSponsors");
+  const btnCloseSponsors = document.getElementById("btnCloseSponsors");
+  const btnCloseSponsorsBtn = document.getElementById("btnCloseSponsorsBtn");
+  const btnViewAllSponsors = document.getElementById("btnViewAllSponsors");
+  const sponsorsTrack = document.getElementById("sponsorsTrack");
+
   // --- Sistema de Áudio Sintetizado (Web Audio API) ---
   let audioCtx = null;
 
@@ -769,7 +776,148 @@
     if (e.target === modalConfig) closeModal(modalConfig);
     if (e.target === modalWinner) closeModal(modalWinner);
     if (e.target === modalRoundFinished) closeModal(modalRoundFinished);
+    if (e.target === modalSponsors) closeModal(modalSponsors);
   });
+
+  // Modal de Patrocinadores
+  if (btnViewAllSponsors) {
+    btnViewAllSponsors.addEventListener("click", () => openModal(modalSponsors));
+  }
+  if (btnCloseSponsors) {
+    btnCloseSponsors.addEventListener("click", () => closeModal(modalSponsors));
+  }
+  if (btnCloseSponsorsBtn) {
+    btnCloseSponsorsBtn.addEventListener("click", () => closeModal(modalSponsors));
+  }
+
+  // --- Carrossel de Patrocinadores (Recorte de Alta Fidelidade) ---
+  const SPONSOR_SLICES = [
+    // Linha 1
+    { x: 12, y: 14, w: 92, h: 68 },   // Paiol
+    { x: 110, y: 14, w: 104, h: 68 }, // Siatec
+    { x: 220, y: 14, w: 118, h: 68 }, // Total Parts
+    { x: 344, y: 14, w: 112, h: 68 }, // Certano
+    { x: 462, y: 14, w: 114, h: 68 }, // Usiplat
+    { x: 582, y: 14, w: 104, h: 68 }, // Dona Nena
+    { x: 692, y: 14, w: 98, h: 68 },  // Nêgo
+    { x: 796, y: 14, w: 90, h: 68 },  // Alquimia
+    { x: 892, y: 14, w: 120, h: 68 }, // Linda Rosa
+
+    // Linha 2
+    { x: 12, y: 92, w: 100, h: 70 },  // Claro
+    { x: 118, y: 92, w: 106, h: 70 }, // Chico's
+    { x: 230, y: 92, w: 120, h: 70 }, // Metal Alpha
+    { x: 356, y: 92, w: 130, h: 70 }, // Bebé
+    { x: 492, y: 92, w: 86, h: 70 },  // Eng Tec
+    { x: 584, y: 92, w: 82, h: 70 },  // Eletro Motores
+    { x: 672, y: 92, w: 106, h: 70 }, // Avatim
+    { x: 784, y: 92, w: 76, h: 70 },  // Raio de Luz
+    { x: 866, y: 92, w: 146, h: 70 }, // Ekkos
+
+    // Linha 3
+    { x: 12, y: 172, w: 110, h: 72 }, // Eletro Service
+    { x: 128, y: 172, w: 116, h: 72 },// Center Panos
+    { x: 250, y: 172, w: 116, h: 72 },// JK
+    { x: 372, y: 172, w: 114, h: 72 },// Construcasa
+    { x: 492, y: 172, w: 90, h: 72 }, // Paulinho
+    { x: 588, y: 172, w: 90, h: 72 }, // Bia
+    { x: 684, y: 172, w: 96, h: 72 }, // Honda
+    { x: 786, y: 172, w: 94, h: 72 }, // Brasil Cacau
+    { x: 886, y: 172, w: 126, h: 72 },// Brum
+
+    // Linha 4
+    { x: 12, y: 254, w: 78, h: 72 },  // Abis
+    { x: 96, y: 254, w: 74, h: 72 },  // Cuzzteano
+    { x: 176, y: 254, w: 98, h: 72 }, // ST
+    { x: 280, y: 254, w: 124, h: 72 },// Molini's
+    { x: 410, y: 254, w: 118, h: 72 },// Chama Gás
+    { x: 534, y: 254, w: 98, h: 72 }, // Norte Aço
+    { x: 638, y: 254, w: 96, h: 72 }, // Marco Véio
+    { x: 740, y: 254, w: 112, h: 72 },// Previni
+    { x: 858, y: 254, w: 68, h: 72 }, // Soeto
+    { x: 932, y: 254, w: 80, h: 72 }, // SS Sousa
+
+    // Linha 5
+    { x: 12, y: 336, w: 120, h: 74 }, // Cury
+    { x: 138, y: 336, w: 106, h: 74 },// Tronbim
+    { x: 250, y: 336, w: 130, h: 74 },// F2M
+    { x: 386, y: 336, w: 144, h: 74 },// Aramon
+    { x: 536, y: 336, w: 154, h: 74 },// Unimed
+    { x: 696, y: 336, w: 128, h: 74 },// Sisprime
+    { x: 830, y: 336, w: 182, h: 74 },// Fucam
+
+    // Linha 6
+    { x: 12, y: 420, w: 114, h: 76 }, // Brasil Cacau
+    { x: 132, y: 420, w: 170, h: 76 },// Lamipack
+    { x: 308, y: 420, w: 198, h: 76 },// Tarfil
+    { x: 512, y: 420, w: 236, h: 76 },// Toyota
+    { x: 754, y: 420, w: 258, h: 76 },// EletroLomba
+
+    // Linha 7
+    { x: 12, y: 506, w: 220, h: 70 }, // Color Tintas Coral
+    { x: 238, y: 506, w: 168, h: 70 },// João Crisóstomo
+    { x: 412, y: 506, w: 190, h: 70 },// Central Art
+    { x: 608, y: 506, w: 156, h: 70 },// Lubrificantes.com
+    { x: 770, y: 506, w: 242, h: 70 } // Sopasta
+  ];
+
+  function initSponsorsCarousel() {
+    if (!sponsorsTrack) return;
+
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.src = "patrocinadores.jpg";
+
+    img.onload = function () {
+      const offCanvas = document.createElement("canvas");
+      const offCtx = offCanvas.getContext("2d");
+      const fragment = document.createDocumentFragment();
+
+      const cardsDataUrls = [];
+
+      SPONSOR_SLICES.forEach((slice) => {
+        offCanvas.width = slice.w;
+        offCanvas.height = slice.h;
+        offCtx.clearRect(0, 0, slice.w, slice.h);
+        offCtx.drawImage(
+          img,
+          slice.x, slice.y, slice.w, slice.h,
+          0, 0, slice.w, slice.h
+        );
+        cardsDataUrls.push(offCanvas.toDataURL("image/png"));
+      });
+
+      // Função auxiliar para criar cards
+      function appendCards(list) {
+        list.forEach((dataUrl) => {
+          const card = document.createElement("div");
+          card.className = "sponsor-card";
+          card.title = "Patrocinador Oficial SIPAT (clique para ampliar)";
+          const logoImg = document.createElement("img");
+          logoImg.src = dataUrl;
+          logoImg.alt = "Patrocinador";
+          card.appendChild(logoImg);
+
+          card.addEventListener("click", () => {
+            openModal(modalSponsors);
+          });
+
+          fragment.appendChild(card);
+        });
+      }
+
+      // Adiciona uma vez e duplica para rotação contínua (marquee infinito)
+      appendCards(cardsDataUrls);
+      appendCards(cardsDataUrls);
+
+      sponsorsTrack.innerHTML = "";
+      sponsorsTrack.appendChild(fragment);
+    };
+
+    img.onerror = function () {
+      console.warn("Imagem de patrocinadores não pôde ser carregada.");
+    };
+  }
 
   // Tecla de atalho: Barra de Espaço para girar a roleta!
   window.addEventListener("keydown", (e) => {
@@ -788,5 +936,6 @@
 
   updateStatsAndLists();
   drawWheel();
+  initSponsorsCarousel();
 })();
 

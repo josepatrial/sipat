@@ -55,6 +55,22 @@
     
     <!-- Lado Esquerdo: Área da Roleta / Sorteio -->
     <section class="wheel-section">
+      <!-- Carrossel de Patrocinadores dos Brindes -->
+      <div class="sponsors-ticker-bar">
+        <div class="sponsors-badge">
+          <span class="sparkle">✨</span>
+          <span class="sponsors-badge-text">PATROCINADORES DOS BRINDES</span>
+        </div>
+        <div class="sponsors-track-wrapper">
+          <div class="sponsors-track" id="sponsorsTrack">
+            <!-- Cards das logos gerados automaticamente -->
+          </div>
+        </div>
+        <button id="btnViewAllSponsors" class="btn-sponsors-modal" title="Ver mural completo de patrocinadores">
+          Mural 🔍
+        </button>
+      </div>
+
       <div class="prize-tag-container">
         <label for="inputCurrentPrize" class="prize-label">Brinde da Rodada:</label>
         <input type="text" id="inputCurrentPrize" placeholder="Ex: Cesta de Brindes, Fone Bluetooth..." value="Brinde Especial SIPAT">
@@ -208,6 +224,27 @@
         <button id="btnRestartAll" class="btn-spin-large">
           🔄 Reiniciar com Todos os Nomes
         </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal do Mural de Patrocinadores -->
+  <div class="modal-backdrop" id="modalSponsors">
+    <div class="modal-dialog sponsors-dialog">
+      <div class="modal-header">
+        <h2>🤝 Patrocinadores Oficiais dos Brindes da SIPAT</h2>
+        <button class="modal-close" id="btnCloseSponsors">&times;</button>
+      </div>
+      <div class="modal-body sponsors-modal-body">
+        <p class="sponsors-thanks-text">
+          Nosso agradecimento especial a todas as empresas parceiras que apoiaram e doaram os brindes deste evento!
+        </p>
+        <div class="sponsors-full-image-wrapper">
+          <img src="patrocinadores.jpg" alt="Mural Oficial de Patrocinadores" class="sponsors-full-img">
+        </div>
+      </div>
+      <div class="modal-footer center-footer">
+        <button id="btnCloseSponsorsBtn" class="btn-primary">Fechar Mural</button>
       </div>
     </div>
   </div>

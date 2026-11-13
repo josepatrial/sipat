@@ -398,7 +398,7 @@
 
     // Ângulo central da fatia
     const sliceCenterAngle = targetSlice * sliceAngle + sliceAngle / 2;
-    
+
     // O ponteiro está em -PI/2 (270 graus). 
     // Para a fatia apontar para -PI/2, currentRotation + sliceCenterAngle ≡ 3*PI/2 (mod 2*PI)
     // Logo, targetRotationOffset = (3*PI/2 - sliceCenterAngle)
@@ -529,8 +529,8 @@
       }
 
       const extractedNames = [];
-      const startRow = (Array.isArray(headerRow) && typeof headerRow[nameColumnIndex] === "string" && 
-                        headerRow[nameColumnIndex].toLowerCase().includes("nome")) ? 1 : 0;
+      const startRow = (Array.isArray(headerRow) && typeof headerRow[nameColumnIndex] === "string" &&
+        headerRow[nameColumnIndex].toLowerCase().includes("nome")) ? 1 : 0;
 
       for (let r = startRow; r < rows.length; r++) {
         const row = rows[r];

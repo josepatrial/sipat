@@ -792,74 +792,73 @@
 
   // --- Carrossel de Patrocinadores (Recorte de Alta Fidelidade) ---
   const SPONSOR_SLICES = [
-    // Linha 1
-    { x: 10, y: 8, w: 98, h: 78 },   // Paiol
-    { x: 110, y: 8, w: 110, h: 78 }, // Siatec
-    { x: 222, y: 8, w: 126, h: 78 }, // Total Parts
-    { x: 350, y: 8, w: 124, h: 78 }, // Certano
-    { x: 476, y: 8, w: 120, h: 78 }, // Usiplat
-    { x: 598, y: 8, w: 108, h: 78 }, // Dona Nena
-    { x: 708, y: 8, w: 108, h: 78 }, // Nêgo
-    { x: 818, y: 8, w: 94, h: 78 },  // Alquimia
-    { x: 914, y: 8, w: 104, h: 78 }, // Linda Rosa
+    // Linha 1 (y: 14, h: 64)
+    { x: 12, y: 14, w: 94, h: 64 },   // Paiol
+    { x: 112, y: 14, w: 106, h: 64 }, // Siatec
+    { x: 224, y: 14, w: 120, h: 64 }, // Total Parts
+    { x: 350, y: 14, w: 120, h: 64 }, // Certano
+    { x: 476, y: 14, w: 116, h: 64 }, // Usiplat
+    { x: 598, y: 14, w: 104, h: 64 }, // Dona Nena
+    { x: 708, y: 14, w: 104, h: 64 }, // Nêgo
+    { x: 818, y: 14, w: 90, h: 64 },  // Alquimia
+    { x: 914, y: 14, w: 100, h: 64 }, // Linda Rosa
 
-    // Linha 2
-    { x: 10, y: 86, w: 106, h: 80 },  // Claro
-    { x: 118, y: 86, w: 118, h: 80 }, // Chico's
-    { x: 238, y: 86, w: 126, h: 80 }, // Metal Alpha
-    { x: 366, y: 86, w: 138, h: 80 }, // Bebé
-    { x: 506, y: 86, w: 92, h: 80 },  // Eng Tec
-    { x: 600, y: 86, w: 90, h: 80 },  // Eletro Motores
-    { x: 692, y: 86, w: 114, h: 80 }, // Avatim
-    { x: 808, y: 86, w: 84, h: 80 },  // Raio de Luz
-    { x: 894, y: 86, w: 124, h: 80 }, // Ekkos
+    // Linha 2 (y: 94, h: 64)
+    { x: 14, y: 94, w: 100, h: 64 },  // Claro
+    { x: 120, y: 94, w: 112, h: 64 }, // Chico's
+    { x: 238, y: 94, w: 122, h: 64 }, // Metal Alpha
+    { x: 366, y: 94, w: 132, h: 64 }, // Bebé
+    { x: 506, y: 94, w: 88, h: 64 },  // Eng Tec
+    { x: 600, y: 94, w: 86, h: 64 },  // Eletro Motores
+    { x: 692, y: 94, w: 110, h: 64 }, // Avatim
+    { x: 808, y: 94, w: 80, h: 64 },  // Raio de Luz
+    { x: 894, y: 94, w: 120, h: 64 }, // Ekkos
 
-    // Linha 3
-    { x: 10, y: 168, w: 118, h: 80 }, // Eletro Service
-    { x: 130, y: 168, w: 124, h: 80 },// Center Panos
-    { x: 256, y: 168, w: 124, h: 80 },// JK
-    { x: 382, y: 168, w: 122, h: 80 },// Construcasa
-    { x: 506, y: 168, w: 98, h: 80 }, // Paulinho
-    { x: 606, y: 168, w: 98, h: 80 }, // Bia
-    { x: 706, y: 168, w: 106, h: 80 },// Honda
-    { x: 814, y: 168, w: 102, h: 80 },// Brasil Cacau
-    { x: 918, y: 168, w: 100, h: 80 },// Brum
+    // Linha 3 (y: 174, h: 64)
+    { x: 12, y: 174, w: 114, h: 64 }, // Eletro Service
+    { x: 132, y: 174, w: 118, h: 64 },// Center Panos
+    { x: 256, y: 174, w: 120, h: 64 },// JK
+    { x: 382, y: 174, w: 118, h: 64 },// Construcasa
+    { x: 506, y: 174, w: 94, h: 64 }, // Paulinho
+    { x: 606, y: 174, w: 94, h: 64 }, // Bia
+    { x: 706, y: 174, w: 102, h: 64 },// Honda
+    { x: 814, y: 174, w: 98, h: 64 }, // Brasil Cacau
+    { x: 918, y: 174, w: 96, h: 64 }, // Brum
 
-    // Linha 4
-    { x: 10, y: 250, w: 88, h: 80 },  // Abis
-    { x: 98, y: 250, w: 82, h: 80 },  // Cuzzteano
-    { x: 182, y: 250, w: 106, h: 80 },// ST
-    { x: 290, y: 250, w: 136, h: 80 },// Molini's
-    { x: 428, y: 250, w: 126, h: 80 },// Chama Gás
-    { x: 556, y: 250, w: 104, h: 80 },// Norte Aço
-    { x: 662, y: 250, w: 100, h: 80 },// Marco Véio
-    { x: 764, y: 250, w: 120, h: 80 },// Previni
-    { x: 886, y: 250, w: 74, h: 80 }, // Soeto
-    { x: 962, y: 250, w: 56, h: 80 }, // SS Sousa
-    { x: 878, y: 250, w: 140, h: 80 },// Sicredi
+    // Linha 4 (y: 256, h: 64)
+    { x: 12, y: 256, w: 82, h: 64 },  // Abis
+    { x: 100, y: 256, w: 78, h: 64 }, // Cuzzteano
+    { x: 184, y: 256, w: 102, h: 64 },// ST
+    { x: 292, y: 256, w: 130, h: 64 },// Molini's
+    { x: 428, y: 256, w: 122, h: 64 },// Chama Gás
+    { x: 556, y: 256, w: 100, h: 64 },// Norte Aço
+    { x: 662, y: 256, w: 96, h: 64 }, // Marco Véio
+    { x: 764, y: 256, w: 116, h: 64 },// Previni
+    { x: 886, y: 256, w: 70, h: 64 }, // Soeto
+    { x: 878, y: 256, w: 136, h: 64 },// Sicredi
 
-    // Linha 5
-    { x: 10, y: 332, w: 130, h: 82 }, // Cury
-    { x: 140, y: 332, w: 116, h: 82 },// Tronbim
-    { x: 258, y: 332, w: 138, h: 82 },// F2M
-    { x: 398, y: 332, w: 152, h: 82 },// Aramon
-    { x: 552, y: 332, w: 164, h: 82 },// Unimed
-    { x: 718, y: 332, w: 140, h: 82 },// Sisprime
-    { x: 860, y: 332, w: 156, h: 82 },// Fucam
+    // Linha 5 (y: 340, h: 66)
+    { x: 12, y: 340, w: 124, h: 66 }, // Cury
+    { x: 142, y: 340, w: 112, h: 66 },// Tronbim
+    { x: 260, y: 340, w: 132, h: 66 },// F2M
+    { x: 400, y: 340, w: 146, h: 66 },// Aramon
+    { x: 552, y: 340, w: 160, h: 66 },// Unimed
+    { x: 718, y: 340, w: 136, h: 66 },// Sisprime
+    { x: 860, y: 340, w: 152, h: 66 },// Fucam
 
-    // Linha 6
-    { x: 10, y: 416, w: 126, h: 82 }, // Brasil Cacau
-    { x: 136, y: 416, w: 180, h: 82 },// Lamipack
-    { x: 318, y: 416, w: 208, h: 82 },// Tarfil
-    { x: 528, y: 416, w: 248, h: 82 },// Toyota
-    { x: 778, y: 416, w: 238, h: 82 },// EletroLomba
+    // Linha 6 (y: 424, h: 68)
+    { x: 12, y: 424, w: 120, h: 68 }, // Brasil Cacau
+    { x: 138, y: 424, w: 174, h: 68 },// Lamipack
+    { x: 320, y: 424, w: 202, h: 68 },// Tarfil
+    { x: 530, y: 424, w: 242, h: 68 },// Toyota
+    { x: 780, y: 424, w: 232, h: 68 },// EletroLomba
 
-    // Linha 7
-    { x: 10, y: 500, w: 238, h: 76 }, // Color Tintas Coral
-    { x: 248, y: 500, w: 180, h: 76 },// João Crisóstomo
-    { x: 430, y: 500, w: 202, h: 76 },// Central Art
-    { x: 634, y: 500, w: 170, h: 76 },// Lubrificantes.com
-    { x: 806, y: 500, w: 210, h: 76 } // Sopasta
+    // Linha 7 (y: 508, h: 64)
+    { x: 12, y: 508, w: 232, h: 64 }, // Color Tintas Coral
+    { x: 250, y: 508, w: 174, h: 64 },// João Crisóstomo
+    { x: 432, y: 508, w: 196, h: 64 },// Central Art
+    { x: 636, y: 508, w: 166, h: 64 },// Lubrificantes.com
+    { x: 808, y: 508, w: 204, h: 64 } // Sopasta
   ];
 
   function initSponsorsCarousel() {

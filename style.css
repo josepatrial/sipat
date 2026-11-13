@@ -60,72 +60,143 @@ body {
 .app-header {
   position: relative;
   z-index: 10;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 18px 36px;
-  background: rgba(15, 23, 42, 0.75);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--bg-card-border);
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 14px 36px;
+  background: rgba(13, 19, 33, 0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.45);
 }
 
 .header-left {
-  display: flex;
-  align-items: center;
-  gap: 18px;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 20px;
 }
 
 .brand-logo-card {
   background: #ffffff;
-  padding: 6px 14px;
-  border-radius: 12px;
+  padding: 6px 16px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
-  height: 52px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  height: 48px;
+  transition: transform 0.2s ease;
+}
+
+.brand-logo-card:hover {
+  transform: scale(1.02);
 }
 
 .brand-logo {
-  height: 40px;
+  height: 36px;
   width: auto;
   object-fit: contain;
   display: block;
 }
 
-.header-titles {
+.header-divider {
+  width: 2px;
+  height: 38px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+}
+
+.event-info-box {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.event-tag-row {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .badge-sipat {
   background: linear-gradient(135deg, #059669, #10b981);
   color: #fff;
   font-weight: 800;
-  font-size: 0.95rem;
-  padding: 6px 14px;
-  border-radius: 8px;
+  font-size: 0.82rem;
+  padding: 3px 10px;
+  border-radius: 6px;
   letter-spacing: 1px;
-  box-shadow: 0 0 15px var(--primary-green-glow);
+  box-shadow: 0 0 12px var(--primary-green-glow);
 }
 
-.header-titles .subtitle {
-  font-size: 0.85rem;
-  color: var(--primary-green);
-  font-weight: 600;
+.event-company-name {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 1.5px;
 }
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
+
+.event-subtitle {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
 }
 
 .header-actions {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 12px !important;
+  flex-shrink: 0 !important;
+}
+
+.btn-header-action {
+  background: rgba(255, 255, 255, 0.06);
+  color: #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 9px 16px;
+  border-radius: 9px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  display: inline-flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.btn-header-action:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+}
+
+.btn-header-primary {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #ffffff;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  padding: 9px 18px;
+  border-radius: 9px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  display: inline-flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 8px;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.35);
+  transition: all 0.2s ease;
+}
+
+.btn-header-primary:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
 }
 
 /* Botões Gerais */
@@ -877,23 +948,24 @@ button {
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .app-header {
-    flex-direction: column;
-    gap: 12px;
-    padding: 16px;
+    flex-direction: column !important;
+    gap: 16px !important;
+    padding: 14px 20px !important;
   }
   .header-left {
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px !important;
   }
-  .brand-logo-card {
-    height: 44px;
-    padding: 4px 10px;
+  .header-actions {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
   }
-  .brand-logo {
-    height: 32px;
+  .header-divider {
+    display: none;
   }
   .wheel-stage {
     width: 320px;

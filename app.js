@@ -746,17 +746,18 @@
   });
 
   // Tela Cheia / Telão
+  const fsLabel = document.getElementById("fsLabel");
   btnFullscreen.addEventListener("click", () => {
     if (!document.fullscreenElement) {
       document.documentElement.requestFullscreen().catch((err) => {
         console.warn("Erro ao entrar em tela cheia:", err);
       });
-      btnFullscreen.innerHTML = "⛶ Sair";
+      if (fsLabel) fsLabel.textContent = "Sair do Telão";
     } else {
       document.exitFullscreen().catch((err) => {
         console.warn("Erro ao sair de tela cheia:", err);
       });
-      btnFullscreen.innerHTML = "⛶ Telão";
+      if (fsLabel) fsLabel.textContent = "Modo Telão";
     }
   });
 

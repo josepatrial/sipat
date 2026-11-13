@@ -16,24 +16,36 @@
   <!-- Cabeçalho Principal -->
   <header class="app-header">
     <div class="header-left">
+      <!-- Logo Oficial Grupo 2 Irmãos -->
       <div class="brand-logo-card">
         <img src="logo.png" alt="Grupo 2 Irmãos" class="brand-logo">
       </div>
-      <div class="header-titles">
-        <div class="badge-sipat">🛡️ SIPAT</div>
-        <p class="subtitle">Sorteio Oficial de Brindes</p>
+
+      <div class="header-divider"></div>
+
+      <!-- Informações do Evento SIPAT -->
+      <div class="event-info-box">
+        <div class="event-tag-row">
+          <span class="badge-sipat">🛡️ SIPAT</span>
+          <span class="event-company-name">Grupo 2 Irmãos</span>
+        </div>
+        <h2 class="event-subtitle">Sorteio Oficial de Brindes</h2>
       </div>
     </div>
     
+    <!-- Ações e Controles do Topo (sempre na horizontal) -->
     <div class="header-actions">
-      <button id="btnSoundToggle" class="btn-icon" title="Ativar/Desativar Som">
+      <button id="btnSoundToggle" class="btn-header-action" title="Ativar/Desativar Som">
         <span id="soundIcon">🔊</span>
+        <span class="btn-label">Som</span>
       </button>
-      <button id="btnFullscreen" class="btn-icon" title="Modo Tela Cheia">
-        ⛶ Telão
+      <button id="btnFullscreen" class="btn-header-action" title="Expandir para o Projetor / Telão">
+        <span>⛶</span>
+        <span class="btn-label" id="fsLabel">Modo Telão</span>
       </button>
-      <button id="btnConfig" class="btn-secondary">
-        📁 Importar Nomes
+      <button id="btnConfig" class="btn-header-primary" title="Importar planilha de nomes ou editar">
+        <span>📁</span>
+        <span class="btn-label">Importar Nomes</span>
       </button>
     </div>
   </header>
